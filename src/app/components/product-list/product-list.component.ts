@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/interfaces/category';
 import { StoreService } from '../../services/store.service';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product-list',
@@ -8,11 +10,20 @@ import { StoreService } from '../../services/store.service';
 })
 export class ProductListComponent implements OnInit {
 
+  categories !: Category[];
+  products !: Product[]; 
+
   constructor( private store: StoreService ) { }
 
   ngOnInit(): void {
-    this.store.getAllCategories().subscribe( categories => console.log(categories) );
-    this.store.getAllProducts().subscribe( products => console.log(products) );
+    this.store.getAllCategories().subscribe( categories => {
+      console.log(categories);
+      this.categories = categories;
+    });
+    this.store.getAllProducts().subscribe( products => {
+      console.log(products);
+      this.products = products;
+    });
   }
 
 }

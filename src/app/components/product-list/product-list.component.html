@@ -1,1 +1,9 @@
-<p>product-list works!</p>
+<div class="container mt-3">
+    <div *ngFor="let category of categories" class="row">
+        <h1 class="text-center">{{category.name}}</h1>
+        <hr>
+        <div *ngFor="let product of products">
+            <p *ngIf="product.category == category.name">{{product.title}}</p>
+        </div>
+    </div>
+</div>
